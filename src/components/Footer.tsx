@@ -3,7 +3,7 @@ import Link from "next/link";
 
 function Footer() {
   return (
-    <footer className="w-full h-[405px] border border-zinc-900/5">
+    <footer className="w-full h-[405px] border border-zinc-900/5 ">
       <div className="flex justify-around p-10 border-b border-zinc-900/10">
         <div className="space-y-10">
           <h1 className="font-bold text-xl">Funiro</h1>
@@ -35,7 +35,7 @@ function Footer() {
         </div>
         <div className="flex flex-col space-y-10">
           <h1 className="text-zinc-900/50">Help</h1>
-          <div className="flex space-x-2">
+          <div className="flex gap-x-2">
             <input
               type="text"
               placeholder="Enter Your Email Address"

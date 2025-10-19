@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+@theme {
+  --color-main: #fff3e3;
+  --color-secondary-main: #b88e2f;
+}
+
 @layer components {
   /* Style the inactive bullets */
   .swiper-pagination-bullet {

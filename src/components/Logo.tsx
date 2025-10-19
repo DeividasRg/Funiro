@@ -6,8 +6,7 @@ function Logo({ needText = true }) {
   return (
     <Link href="/" className="flex items-center gap-x-1 font-bold text-xl">
       <Image alt="Funiro logo" src={logo} />
-
-      {needText && <h1>Funiro</h1>}
+      {needText && <h1 className="text-main">Funiro</h1>}{" "}
     </Link>
   );
 }

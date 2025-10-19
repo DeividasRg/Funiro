@@ -5,7 +5,7 @@ import inspirationImg from "../../public/Rectangle 24.png";
 
 function InspirationComp() {
   return (
-    <section className="flex items-center bg-[#FFF3E3] h-[600px] justify-between gap-x-6">
+    <section className="flex items-center bg-main h-[600px] justify-between gap-x-6">
       <Rooms />
       <Inspiration />
       <SwiperComp />
