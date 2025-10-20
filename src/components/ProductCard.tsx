@@ -52,9 +52,13 @@ function ProductCard({ product }: ProductCardProps) {
       <div className="group basis-1/4 h-[400px] bg-zinc-200 shadow relative">
         <div className="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-99">
           <div className="space-y-5">
-            <button onClick={(e) => handleButtonClick(e, "addToCart")}>
-              <BtnComp type="secondary">Add to cart</BtnComp>
-            </button>
+            <BtnComp
+              type="secondary"
+              onClick={(e) => handleButtonClick(e, "addToCart")}
+            >
+              Add to cart
+            </BtnComp>
+
             <div className="flex items-center justify-center text-white gap-x-3 ">
               <button
                 onClick={(e) => handleButtonClick(e, "share")}
