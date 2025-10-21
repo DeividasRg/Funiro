@@ -25,6 +25,7 @@ function GalleryComp() {
     src: picture.src,
     width: (picture.width as number) || 1,
     height: (picture.height as number) || 1,
+    alt: "Product photo",
   }));
 
   return <Gallery photos={photos} direction="column" columns={4} margin={20} />;

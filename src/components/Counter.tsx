@@ -13,7 +13,7 @@ function Counter({
   decreaseValue,
   count,
 }: CounterProps) {
-  const increaseValueChecked = () => {
+  const increaseValueCheck = () => {
     if (count < maximumValue) {
       increaseValue();
     }
@@ -29,7 +29,7 @@ function Counter({
       </button>
       <span>{count}</span>
       <button
-        onClick={increaseValueChecked}
+        onClick={increaseValueCheck}
         className="hover:cursor-pointer active:scale-70  transition"
       >
         +

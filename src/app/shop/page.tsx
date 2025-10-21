@@ -7,13 +7,14 @@ import { CiTrophy } from "react-icons/ci";
 import { CiCircleCheck } from "react-icons/ci";
 import { CiBoxes } from "react-icons/ci";
 import { CiHeadphones } from "react-icons/ci";
+import Products from "@/components/Products";
 
 function Page() {
   return (
     <main className="w-full">
       <HeaderPicture />
       <FilterComp />
-      <Products />
+      <ProductSection />
       <InfoBanner />
     </main>
   );
@@ -57,17 +58,11 @@ const InfoBanner = () => {
   );
 };
 
-const Products = () => {
+const ProductSection = () => {
   return (
     <section>
-      <div className="grid grid-cols-4 gap-4 px-60 mt-10 ">
-        {mockData.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
-        {mockData.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
-      </div>
+      <Products data={mockData} />
+      <Products data={mockData} />
       <div className="flex items-center justify-center gap-x-10 mt-10">
         <button className="bg-secondary-main px-4 py-3 rounded-xl">1</button>
         <button className="bg-main px-4 py-3 rounded-xl hover:cursor-pointer hover:bg-secondary-main transition">
