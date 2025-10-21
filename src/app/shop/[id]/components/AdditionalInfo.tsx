@@ -31,10 +31,10 @@ function AdditionalInfo({
             <h2
               className={cn(
                 {
-                  "text-zinc-900": section.id === selectedSectionId,
+                  "text-compliment": section.id === selectedSectionId,
                 },
                 {
-                  "hover:cursor-pointer hover:text-zinc-900 transition":
+                  "hover:cursor-pointer hover:text-compliment transition":
                     section.id !== selectedSectionId,
                 }
               )}

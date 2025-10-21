@@ -19,7 +19,7 @@ export default Footer;
 
 const FooterWrapper = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="flex justify-around p-10 border-b border-zinc-900/10">
+    <div className="flex justify-around p-10 border-b border-compliment">
       {children}
     </div>
   );

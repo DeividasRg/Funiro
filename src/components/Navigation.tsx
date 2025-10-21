@@ -13,8 +13,8 @@ function Navigation() {
             <Link
               className={`${
                 pathName === link.href
-                  ? "font-bold text-zinc-900"
-                  : "hover:text-zinc-900 transition"
+                  ? "font-bold text-compliment"
+                  : "hover:text-compliment transition"
               } `}
               href={link.href}
             >

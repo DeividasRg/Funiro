@@ -7,10 +7,7 @@ function OurProductsComp() {
       <div>
         <h1 className="font-extrabold text-3xl tracking-wider">Our Products</h1>
       </div>
-      <Products data={mockData} />
-      <button className="border-2 border-secondary-main mx-auto px-18 py-2 text-secondary-main font-bold hover:bg-main hover:cursor-pointer transition">
-        Show More
-      </button>
+      <Products data={mockData} renderShowMore={true} />
     </section>
   );
 }

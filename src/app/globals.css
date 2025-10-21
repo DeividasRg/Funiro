@@ -3,6 +3,7 @@
 @theme {
   --color-main: #fff3e3;
   --color-secondary-main: #b88e2f;
+  --compliment: #18181b;
 }
 
 @layer components {

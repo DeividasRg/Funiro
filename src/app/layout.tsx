@@ -28,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased text-sm bg-[#FFFFFF] min-h-screen  text-zinc-900 overflow-x-hidden`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased text-sm bg-[#FFFFFF] min-h-screen  text-compliment overflow-x-hidden`}
       >
         <Header />
         <ReduxProviderWrapper>{children}</ReduxProviderWrapper>

@@ -2,7 +2,6 @@ import Image from "next/image";
 import shopImg from "@/../public/shop.png";
 import FilterComp from "@/components/FilterComp";
 import { mockData } from "@/utils/constants";
-import ProductCard from "@/components/ProductCard";
 import { CiTrophy } from "react-icons/ci";
 import { CiCircleCheck } from "react-icons/ci";
 import { CiBoxes } from "react-icons/ci";
@@ -30,28 +29,28 @@ const InfoBanner = () => {
         <CiTrophy size={size} />
         <div>
           <h1 className="font-bold text-xl">High Quality</h1>
-          <p className="text-zinc-900/60">Crafted from top materials</p>
+          <p className="text-zinc-900//60">Crafted from top materials</p>
         </div>
       </div>
       <div className="flex gap-x-2">
         <CiCircleCheck size={size} />
         <div>
           <h1 className="font-bold text-xl">Warranty Protection</h1>
-          <p className="text-zinc-900/60">Over 2 years</p>
+          <p className="text-zinc-900//60">Over 2 years</p>
         </div>
       </div>
       <div className="flex gap-x-2">
         <CiBoxes size={size} />
         <div>
           <h1 className="font-bold text-xl">Free Shipping</h1>
-          <p className="text-zinc-900/60">Order over ﹩150</p>
+          <p className="text-zinc-900//60">Order over ﹩150</p>
         </div>
       </div>
       <div className="flex gap-x-2">
         <CiHeadphones size={size} />
         <div>
           <h1 className="font-bold text-xl">24 / 7 Support</h1>
-          <p className="text-zinc-900/60">Dedicated support</p>
+          <p className="text-zinc-900//60">Dedicated support</p>
         </div>
       </div>
     </section>
@@ -61,20 +60,7 @@ const InfoBanner = () => {
 const ProductSection = () => {
   return (
     <section>
-      <Products data={mockData} />
-      <Products data={mockData} />
-      <div className="flex items-center justify-center gap-x-10 mt-10">
-        <button className="bg-secondary-main px-4 py-3 rounded-xl">1</button>
-        <button className="bg-main px-4 py-3 rounded-xl hover:cursor-pointer hover:bg-secondary-main transition">
-          2
-        </button>
-        <button className="bg-main px-4 py-3 rounded-xl hover:cursor-pointer hover:bg-secondary-main transition">
-          3
-        </button>
-        <button className="bg-main px-4 py-3 rounded-xl hover:cursor-pointer hover:bg-secondary-main transition">
-          Next
-        </button>
-      </div>
+      <Products data={mockData} applyFilters={true} renderPagination={true} />
     </section>
   );
 };

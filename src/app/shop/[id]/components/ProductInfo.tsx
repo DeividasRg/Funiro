@@ -43,7 +43,7 @@ function ProductInfo({
             key={size.id}
             onClick={() => changeSize(size.id)}
             className={cn(
-              "text-zinc-900, px-3 py-2 rounded-xl bg-main transition",
+              "text-compliment, px-3 py-2 rounded-xl bg-main transition",
               {
                 "bg-secondary-main text-white": size.id === selectedSizeId,
               },
@@ -84,10 +84,10 @@ function ProductInfo({
           increaseValue={increaseValue}
           decreaseValue={decreaseValue}
         />
-        <button className="font-bold border border-zinc-900 px-12 py-4 rounded-xl hover:bg-secondary-main hover:cursor-pointer hover:text-white transition">
+        <button className="font-bold border border-compliment px-12 py-4 rounded-xl hover:bg-secondary-main hover:cursor-pointer hover:text-white transition">
           Add To Cart
         </button>
-        <button className="font-bold border border-zinc-900 px-12 py-4 rounded-xl hover:bg-secondary-main hover:cursor-pointer hover:text-white transition">
+        <button className="font-bold border border-compliment px-12 py-4 rounded-xl hover:bg-secondary-main hover:cursor-pointer hover:text-white transition">
           + Compare
         </button>
       </div>
