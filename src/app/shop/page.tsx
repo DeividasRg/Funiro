@@ -12,7 +12,7 @@ function Page() {
   return (
     <main className="w-full">
       <HeaderPicture />
-      <FilterComp />
+      <FilterComp data={mockData} />
       <ProductSection />
       <InfoBanner />
     </main>

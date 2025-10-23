@@ -204,3 +204,11 @@ export const mockData = [
     previewImage: pottyImg,
   },
 ];
+
+export const customFiltersForFiltering = [
+  "sofa",
+  "mug",
+  "lamp",
+  "chair",
+  "table",
+];

@@ -3,7 +3,7 @@ import React from "react";
 
 type BtnCompPropss = {
   children: React.ReactNode;
-  type: "main" | "secondary" | "addition" | "custom";
+  type: "main" | "secondary" | "addition" | "switch";
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   additionalStyles?: string;
 };
@@ -17,8 +17,8 @@ function BtnComp({ children, type, onClick, additionalStyles }: BtnCompPropss) {
         return "font-bold text-secondary-main bg-white px-12 py-2 hover:cursor-pointer";
       case "addition":
         return "border-2 border-secondary-main mx-auto px-18 py-2 text-secondary-main font-bold hover:bg-main hover:cursor-pointer transition";
-      case "custom":
-        return "";
+      case "switch":
+        return "p-2 border rounded-full border-zinc-900/40 bg-main active:scale-95";
       default:
         return "text-red-500";
     }
