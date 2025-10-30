@@ -2,7 +2,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import BtnComp from "./BtnComp";
 import ProductCard from "./ProductCard";
-import { TShortProduct } from "@/utils/types";
 import { selectFilterState } from "@/app/slices/FilterSlice";
 import { useEffect, useMemo } from "react";
 import {
@@ -10,11 +9,13 @@ import {
   setCurrentPage,
   updatePagination,
 } from "@/app/slices/PaginationSlice";
+import { filterData } from "@/utils/utils";
+import { TShortProduct } from "@/utils/schema";
+import { useGetShortProductsQuery } from "@/app/slices/SupabaseApi";
 
 type ProductsProps = {
   renderProducts?: number;
   renderShowMore?: boolean;
-  data: TShortProduct[];
   applyFilters?: boolean;
   renderPagination?: boolean;
 };
@@ -22,7 +23,6 @@ type ProductsProps = {
 function Products({
   renderShowMore = false,
   renderProducts = 0,
-  data,
   applyFilters = false,
   renderPagination = false,
 }: ProductsProps) {
@@ -32,48 +32,29 @@ function Products({
   const { paginatedData, currentPage, totalPages, pageSize } = useSelector(
     selectPaginationState
   );
+  const { data = [], isLoading, error } = useGetShortProductsQuery();
 
-  const filteredData = useMemo(() => {
-    if (!applyFilters) return data;
-
-    let result;
-    if (showDiscountedOnly) {
-      result = data.filter((p) => p.isDiscounted);
-    } else {
-      result = data;
-    }
-
-    if (customFilter.trim() !== "") {
-      const keyword = customFilter.toLowerCase();
-      result = [...result].filter((item) =>
-        item.shortSynopsis.toLowerCase().includes(keyword)
-      );
-    }
-
-    if (sort === "asc") {
-      result = [...result].sort((a, b) => a.price - b.price);
-    }
-
-    if (sort === "desc") {
-      result = [...result].sort((a, b) => b.price - a.price);
-    }
-
-    return result;
-  }, [data, applyFilters, showDiscountedOnly, sort, customFilter]);
+  const filteredData = useMemo(
+    () =>
+      applyFilters
+        ? filterData(showDiscountedOnly, data, customFilter, sort)
+        : data,
+    [data, applyFilters, showDiscountedOnly, sort, customFilter]
+  );
 
   useEffect(() => {
-    dispatch(updatePagination({ data: filteredData }));
+    if (filteredData.length > 0) {
+      dispatch(updatePagination({ data: filteredData }));
+    }
   }, [filteredData, dispatch, pageSize, currentPage]);
 
-  const goNext = () => {
-    dispatch(setCurrentPage(Math.min(currentPage + 1, totalPages)));
+  const updatePage = (newPage: number) => {
+    dispatch(setCurrentPage(newPage));
     dispatch(updatePagination({ data: filteredData }));
   };
 
-  const goPrev = () => {
-    dispatch(setCurrentPage(Math.max(currentPage - 1, 1)));
-    dispatch(updatePagination({ data: filteredData }));
-  };
+  const goNext = () => updatePage(Math.min(currentPage + 1, totalPages));
+  const goPrev = () => updatePage(Math.max(currentPage - 1, 1));
 
   return (
     <>
@@ -90,30 +71,51 @@ function Products({
       </div>
       {renderShowMore && <BtnComp type="addition">Show More</BtnComp>}
       {renderPagination && totalPages > 1 && (
-        <div className="flex items-center justify-center gap-x-10 mt-10">
-          <BtnComp
-            onClick={goPrev}
-            type="main"
-            additionalStyles={`px-7 ${currentPage === 1 ? "opacity-0" : ""}`}
-          >
-            Previous
-          </BtnComp>
-          <p>
-            Page {currentPage} of {totalPages}
-          </p>
-          <BtnComp
-            onClick={goNext}
-            type="main"
-            additionalStyles={`px-10
-              ${currentPage === totalPages ? "opacity-0" : ""}
-            `}
-          >
-            Next
-          </BtnComp>
-        </div>
+        <Pagination
+          goPrev={goPrev}
+          goNext={goNext}
+          currentPage={currentPage}
+          totalPages={totalPages}
+        />
       )}
     </>
   );
 }
 
 export default Products;
+
+function Pagination({
+  goPrev,
+  goNext,
+  currentPage,
+  totalPages,
+}: {
+  goPrev: () => void;
+  goNext: () => void;
+  currentPage: number;
+  totalPages: number;
+}) {
+  return (
+    <div className="flex items-center justify-center gap-x-10 mt-10">
+      <BtnComp
+        onClick={goPrev}
+        type="main"
+        additionalStyles={`px-7 ${currentPage === 1 ? "opacity-0" : ""}`}
+      >
+        Previous
+      </BtnComp>
+      <p>
+        Page {currentPage} of {totalPages}
+      </p>
+      <BtnComp
+        onClick={goNext}
+        type="main"
+        additionalStyles={`px-10
+              ${currentPage === totalPages ? "opacity-0" : ""}
+            `}
+      >
+        Next
+      </BtnComp>
+    </div>
+  );
+}

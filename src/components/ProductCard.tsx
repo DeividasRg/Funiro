@@ -5,8 +5,8 @@ import { IoIosGitCompare } from "react-icons/io";
 import { CiHeart } from "react-icons/ci";
 import BtnComp from "./BtnComp";
 import Link from "next/link";
-import { TShortProduct } from "@/utils/types";
 import Image from "next/image";
+import { TShortProduct } from "@/utils/schema";
 
 function ProductCard({ data }: { data: TShortProduct }) {
   return (
@@ -15,6 +15,8 @@ function ProductCard({ data }: { data: TShortProduct }) {
         <HoverComponent />
         <Image
           src={data.previewImage}
+          width={200}
+          height={200}
           alt={data.name}
           className="w-full h-[260px]"
         />

@@ -1,7 +1,7 @@
+"use client";
 import Image from "next/image";
 import shopImg from "@/../public/shop.png";
 import FilterComp from "@/components/FilterComp";
-import { mockData } from "@/utils/constants";
 import { CiTrophy } from "react-icons/ci";
 import { CiCircleCheck } from "react-icons/ci";
 import { CiBoxes } from "react-icons/ci";
@@ -12,7 +12,7 @@ function Page() {
   return (
     <main className="w-full">
       <HeaderPicture />
-      <FilterComp data={mockData} />
+      <FilterComp />
       <ProductSection />
       <InfoBanner />
     </main>
@@ -60,7 +60,7 @@ const InfoBanner = () => {
 const ProductSection = () => {
   return (
     <section>
-      <Products data={mockData} applyFilters={true} renderPagination={true} />
+      <Products applyFilters={true} renderPagination={true} />
     </section>
   );
 };

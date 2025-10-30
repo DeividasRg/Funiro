@@ -1,9 +1,9 @@
-import { TProduct } from "@/utils/types";
+import { TProduct } from "@/utils/schema";
 import Image from "next/image";
 
 type PictureSelectProps = {
-  selectedPictureId: number;
-  changeImage: (id: number) => void;
+  selectedPictureId?: string;
+  changeImage: (id: string) => void;
   product: TProduct;
 };
 
@@ -12,10 +12,17 @@ function PictureSelect({
   changeImage,
   product,
 }: PictureSelectProps) {
+  if (product === undefined || product === null)
+    return <p>No selected image</p>;
+
+  const selectedPicture =
+    product.showCaseImages.find((img) => img.id === selectedPictureId)?.url ||
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/2560px-Placeholder_view_vector.svg.png";
+
   return (
     <div className="flex">
       <div className="flex flex-col space-y-5 mr-5">
-        {product.images.map((image) => (
+        {product.showCaseImages.map((image) => (
           <button
             key={image.id}
             onClick={() => changeImage(image.id)}
@@ -32,12 +39,15 @@ function PictureSelect({
         ))}
       </div>
       <div className="flex-none">
-        <Image
-          src={product.images.find((img) => img.id === selectedPictureId)!.url}
-          alt="Selected"
-          width={750}
-          height={750}
-        />
+        <div className="relative w-[700px] h-[500px]">
+          <Image
+            src={selectedPicture}
+            alt="Selected"
+            fill
+            className="object-cover"
+            quality={100}
+          />
+        </div>
       </div>
     </div>
   );

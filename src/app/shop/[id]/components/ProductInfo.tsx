@@ -1,13 +1,13 @@
 import Counter from "@/components/Counter";
 import StarRating from "@/components/StarRating";
-import { TProduct } from "@/utils/types";
+import { TProduct } from "@/utils/schema";
 import { cn } from "@/utils/utils";
 
 type ProductInfoProps = {
-  changeSize: (id: number) => void;
-  selectedSizeId: number;
-  changeColorId: (id: number) => void;
-  selectedColorId: number;
+  changeSize: (id: string) => void;
+  selectedSizeId?: string;
+  changeColorId: (id: string) => void;
+  selectedColorId?: string;
   count: number;
   increaseValue: () => void;
   decreaseValue: () => void;
@@ -24,6 +24,7 @@ function ProductInfo({
   decreaseValue,
   product,
 }: ProductInfoProps) {
+  console.log(product);
   return (
     <div className="space-y-5">
       <div className="space-y-1">
@@ -101,7 +102,7 @@ function ProductInfo({
         <div className="space-y-2">
           <p>: {product.id}</p>
           <p>: {product.category}</p>
-          <p>: {product.tags.join(", ")}</p>
+          <p>: {product.tags.map((tag) => tag.tag).join(", ")}</p>
         </div>
       </div>
     </div>

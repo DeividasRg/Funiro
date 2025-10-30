@@ -15,15 +15,12 @@ import {
   selectPaginationState,
   setPageSize,
 } from "@/app/slices/PaginationSlice";
-import { TShortProduct } from "@/utils/types";
 import { ChangeEvent } from "react";
 import { customFiltersForFiltering } from "@/utils/constants";
+import { useGetShortProductsQuery } from "@/app/slices/SupabaseApi";
 
-type FilterCompProps = {
-  data: TShortProduct[];
-};
-
-function FilterComp({ data }: FilterCompProps) {
+function FilterComp() {
+  const { data, error, isLoading } = useGetShortProductsQuery();
   const dispatch = useDispatch();
   const { showExtra, showDiscountedOnly, sort, customFilter } =
     useSelector(selectFilterState);
@@ -55,45 +52,50 @@ function FilterComp({ data }: FilterCompProps) {
 
   return (
     <>
-      <div className="bg-main w-full h-[80px] -translate-y-2">
-        <div className="flex items-center justify-around h-full">
-          <div className="flex items-center gap-x-5">
-            <div
-              className="flex items-center gap-x-2 cursor-pointer"
-              onClick={() => dispatch(toggleShowExtra())}
-            >
-              <IoMdOptions size={20} />
-              <p>Filter</p>
+      {isLoading || error || !data ? (
+        <p>Loading</p>
+      ) : (
+        <div className="bg-main w-full h-20 -translate-y-2">
+          <div className="flex items-center justify-around h-full">
+            <div className="flex items-center gap-x-5">
+              <div
+                className="flex items-center gap-x-2 cursor-pointer"
+                onClick={() => dispatch(toggleShowExtra())}
+              >
+                <IoMdOptions size={20} />
+                <p>Filter</p>
+              </div>
+              <p>|</p>
+              <p>
+                Showing {startIndex + 1}-
+                {data.length > pageSize ? startIndex + pageSize : data.length}{" "}
+                results of {data.length}
+              </p>
             </div>
-            <p>|</p>
-            <p>
-              Showing {startIndex + 1}-{startIndex + pageSize} results of{" "}
-              {data.length}
-            </p>
-          </div>
-          <div className="flex items-center gap-x-3">
-            <p>Show Maximum</p>
-            <select
-              className="bg-white outline-0 shadow-xs w-[70px] text-center p-2 cursor-pointer"
-              value={pageSize}
-              onChange={(e) => setPageSizeInComponent(e)}
-            >
-              <option value="8">8</option>
-              <option value="16">16</option>
-            </select>
-            <p>And Sorting By</p>
-            <select
-              className="bg-white outline-0 shadow-xs w-[150px] text-center p-2 cursor-pointer"
-              value={sort}
-              onChange={(e) => setSort(e)}
-            >
-              <option value="default">Default</option>
-              <option value="asc">Price Ascending</option>
-              <option value="desc">Price Descendings</option>
-            </select>
+            <div className="flex items-center gap-x-3">
+              <p>Show Maximum</p>
+              <select
+                className="bg-white outline-0 shadow-xs w-[70px] text-center p-2 cursor-pointer"
+                value={pageSize}
+                onChange={(e) => setPageSizeInComponent(e)}
+              >
+                <option value="8">8</option>
+                <option value="16">16</option>
+              </select>
+              <p>And Sorting By</p>
+              <select
+                className="bg-white outline-0 shadow-xs w-[150px] text-center p-2 cursor-pointer"
+                value={sort}
+                onChange={(e) => setSort(e)}
+              >
+                <option value="default">Default</option>
+                <option value="asc">Price Ascending</option>
+                <option value="desc">Price Descendings</option>
+              </select>
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
       <AnimatePresence>
         {showExtra && (

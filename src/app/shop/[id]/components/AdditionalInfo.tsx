@@ -1,4 +1,4 @@
-import { TProduct } from "@/utils/types";
+import { TProduct } from "@/utils/schema";
 import { cn } from "@/utils/utils";
 import Image from "next/image";
 
@@ -31,7 +31,7 @@ function AdditionalInfo({
             <h2
               className={cn(
                 {
-                  "text-compliment": section.id === selectedSectionId,
+                  "text-zinc-900": section.id === selectedSectionId,
                 },
                 {
                   "hover:cursor-pointer hover:text-compliment transition":
@@ -50,7 +50,9 @@ function AdditionalInfo({
       </div>
       <div className="flex justify-center gap-x-10 mt-10">
         {product.showCaseImages.map((image) => (
-          <Image key={image.id} src={image.url} alt="Additional" />
+          <div className="relative w-[300px] h-[200px]" key={image.id}>
+            <Image src={image.url} fill alt="Additional" />
+          </div>
         ))}
       </div>
     </div>

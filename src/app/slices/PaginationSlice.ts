@@ -1,6 +1,6 @@
-import { TShortProduct } from "@/utils/types";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../store";
+import { TShortProduct } from "@/utils/schema";
 
 type PaginationState = {
   currentPage: number;

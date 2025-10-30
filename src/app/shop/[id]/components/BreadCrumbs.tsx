@@ -1,4 +1,4 @@
-import { TProduct } from "@/utils/types";
+import { TProduct } from "@/utils/schema";
 
 type BreadCrumbsProps = {
   product: TProduct;
