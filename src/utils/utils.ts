@@ -2,10 +2,6 @@ import clsx, { ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { TShortProduct } from "./schema";
 
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
-}
-
 export function filterData(
   showDiscountedOnly: boolean,
   data: TShortProduct[],

@@ -4,22 +4,25 @@ import { CiShare2 } from "react-icons/ci";
 import { IoIosGitCompare } from "react-icons/io";
 import { CiHeart } from "react-icons/ci";
 import BtnComp from "./BtnComp";
-import Link from "next/link";
-import Image from "next/image";
 import { TShortProduct } from "@/utils/schema";
+import { useDispatch } from "react-redux";
+import Image from "next/image";
+import { addItem, showDialog } from "@/app/slices/GlobalDialogSlice";
+import Link from "next/link";
 
 function ProductCard({ data }: { data: TShortProduct }) {
   return (
     <Link href={`/shop/${data.id}`}>
-      <div className="group basis-1/4 h-[400px] bg-zinc-200 shadow relative">
-        <HoverComponent />
-        <Image
-          src={data.previewImage}
-          width={200}
-          height={200}
-          alt={data.name}
-          className="w-full h-[260px]"
-        />
+      <div className="group basis-1/4 h-[400px] bg-zinc-200 shadow relative overflow-hidden">
+        <HoverComponent data={data} />
+        <div className="relative w-full h-[70%]">
+          <Image
+            src={data.previewImage}
+            fill
+            alt={data.name}
+            className="object-cover"
+          />
+        </div>
 
         {data.isDiscounted && (
           <CircleComponent type="discount">
@@ -45,7 +48,9 @@ function ProductCard({ data }: { data: TShortProduct }) {
   );
 }
 
-const HoverComponent = () => {
+const HoverComponent = ({ data }: { data: TShortProduct }) => {
+  const dispatch = useDispatch();
+
   const handleButtonClick = (
     e: React.MouseEvent<HTMLButtonElement>,
     action: "addToCart" | "share" | "compare" | "like"
@@ -55,7 +60,16 @@ const HoverComponent = () => {
 
     switch (action) {
       case "addToCart":
-        console.log("Add to cart clicked!");
+        dispatch(
+          addItem({
+            id: data.id,
+            name: data.name,
+            price: data.price,
+            quantity: 1,
+            previewImage: data.previewImage,
+          })
+        );
+        dispatch(showDialog());
         break;
       case "share":
         console.log("Share clicked!");

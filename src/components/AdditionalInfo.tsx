@@ -1,5 +1,5 @@
+import { cn } from "@/lib/utils";
 import { TProduct } from "@/utils/schema";
-import { cn } from "@/utils/utils";
 import Image from "next/image";
 
 const sections = [

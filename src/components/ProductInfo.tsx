@@ -1,7 +1,7 @@
 import Counter from "@/components/Counter";
 import StarRating from "@/components/StarRating";
+import { cn } from "@/lib/utils";
 import { TProduct } from "@/utils/schema";
-import { cn } from "@/utils/utils";
 
 type ProductInfoProps = {
   changeSize: (id: string) => void;

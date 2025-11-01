@@ -1,4 +1,3 @@
-import { mockData } from "@/utils/constants";
 import Products from "./Products";
 
 function OurProductsComp() {
@@ -7,7 +6,7 @@ function OurProductsComp() {
       <div>
         <h1 className="font-extrabold text-3xl tracking-wider">Our Products</h1>
       </div>
-      <Products data={mockData} renderShowMore={true} />
+      <Products renderShowMore={true} />
     </section>
   );
 }

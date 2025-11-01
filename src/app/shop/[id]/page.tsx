@@ -1,10 +1,10 @@
 "use client";
 import useProduct from "@/hooks/useProduct";
-import RelatedProducts from "./components/RelatedProducts";
-import AdditionalInfo from "./components/AdditionalInfo";
-import ProductInfo from "./components/ProductInfo";
-import PictureSelect from "./components/PictureSelect";
-import BreadCrumbs from "./components/BreadCrumbs";
+import RelatedProducts from "../../../components/RelatedProducts";
+import AdditionalInfo from "../../../components/AdditionalInfo";
+import ProductInfo from "../../../components/ProductInfo";
+import PictureSelect from "../../../components/PictureSelect";
+import BreadCrumbs from "../../../components/BreadCrumbs";
 import { useGetProductByIdQuery } from "@/app/slices/SupabaseApi";
 import React, { Usable } from "react";
 
@@ -29,10 +29,9 @@ export default function Page({ params }: { params: Usable<unknown> }) {
   if (isLoading)
     return (
       <main className="animate-pulse p-20">
-        <div className="h-6 w-40 bg-gray-300 rounded mb-8" /> {/* Breadcrumb */}
+        <div className="h-6 w-40 bg-gray-300 rounded mb-8" />
         <div className="flex gap-x-10">
           <div className="w-96 h-96 bg-gray-300 rounded" />{" "}
-          {/* Product Image */}
           <div className="flex flex-col gap-4 w-80">
             <div className="h-6 w-full bg-gray-300 rounded" />
             <div className="h-6 w-2/3 bg-gray-300 rounded" />

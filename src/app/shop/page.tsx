@@ -7,6 +7,8 @@ import { CiCircleCheck } from "react-icons/ci";
 import { CiBoxes } from "react-icons/ci";
 import { CiHeadphones } from "react-icons/ci";
 import Products from "@/components/Products";
+import { useDispatch } from "react-redux";
+import { showDialog } from "../slices/GlobalDialogSlice";
 
 function Page() {
   return (
@@ -22,6 +24,7 @@ function Page() {
 export default Page;
 
 const InfoBanner = () => {
+  const dispatch = useDispatch();
   const size = 50;
   return (
     <section className="bg-main flex items-center justify-around py-15 mt-10 px-10">
@@ -30,6 +33,9 @@ const InfoBanner = () => {
         <div>
           <h1 className="font-bold text-xl">High Quality</h1>
           <p className="text-zinc-900//60">Crafted from top materials</p>
+          <button onClick={() => dispatch(showDialog())}>
+            Open Global Shadcn Dialog
+          </button>
         </div>
       </div>
       <div className="flex gap-x-2">

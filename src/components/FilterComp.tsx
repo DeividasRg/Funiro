@@ -53,7 +53,7 @@ function FilterComp() {
   return (
     <>
       {isLoading || error || !data ? (
-        <p>Loading</p>
+        <div className="bg-zinc-200  w-full h-20 -translate-y-2 animate-pulse" />
       ) : (
         <div className="bg-main w-full h-20 -translate-y-2">
           <div className="flex items-center justify-around h-full">

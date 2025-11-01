@@ -56,6 +56,16 @@ function Products({
   const goNext = () => updatePage(Math.min(currentPage + 1, totalPages));
   const goPrev = () => updatePage(Math.max(currentPage - 1, 1));
 
+  if (isLoading)
+    return (
+      <div className="grid grid-cols-4 gap-4 px-60 mt-10 animate-pulse">
+        <div className="group basis-1/4 h-[400px] bg-zinc-200 shadow relative overflow-hidden" />
+        <div className="group basis-1/4 h-[400px] bg-zinc-200 shadow relative overflow-hidden" />
+        <div className="group basis-1/4 h-[400px] bg-zinc-200 shadow relative overflow-hidden" />
+        <div className="group basis-1/4 h-[400px] bg-zinc-200 shadow relative overflow-hidden" />
+      </div>
+    );
+
   return (
     <>
       {filteredData.length === 0 && (

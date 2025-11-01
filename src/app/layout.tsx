@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "../components/Header";
 import Footer from "@/components/Footer";
 import ReduxProviderWrapper from "@/components/ReduxProviderWrapper";
+import GlobalDialogWrapper from "@/components/GlobalDialogWrapper";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,12 +27,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="no-scrollbar">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased text-sm bg-[#FFFFFF] min-h-screen  text-compliment overflow-x-hidden`}
       >
         <Header />
-        <ReduxProviderWrapper>{children}</ReduxProviderWrapper>
+        <ReduxProviderWrapper>
+          {children}
+          <GlobalDialogWrapper />
+        </ReduxProviderWrapper>
         <Footer />
       </body>
     </html>

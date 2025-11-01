@@ -18,15 +18,7 @@ export const shortProductSchema = z.object({
     z.null(),
   ]),
   isNew: z.boolean().nonoptional(),
-  previewImage: z.union([
-    z.url("Preview image must be a valid URL"),
-    z.object({
-      src: z.string(),
-      height: z.number(),
-      width: z.number(),
-      blurDataUrl: z.string().optional(),
-    }),
-  ]),
+  previewImage: z.url("Preview image must be a valid URL"),
 });
 
 export const productSchema = shortProductSchema.extend({
