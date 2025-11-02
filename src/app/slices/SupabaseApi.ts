@@ -19,7 +19,7 @@ export const supabaseApi = createApi({
         const { data, error } = await supabase
           .from("Products")
           .select(
-            "id,name,shortSynopsis,price,priceWithoutDiscount,isDiscounted,discountPercentage,isNew,previewImage"
+            "id,name,shortSynopsis,price,priceWithoutDiscount,isDiscounted,discountPercentage,isNew,previewImage,maxCount"
           );
 
         if (error) {

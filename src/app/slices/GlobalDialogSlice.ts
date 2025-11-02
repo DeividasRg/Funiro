@@ -7,6 +7,7 @@ export type CartItem = {
   price: number;
   quantity: number;
   previewImage: string;
+  maxCount: number;
 };
 
 type TGlobalDialogState = {
@@ -19,23 +20,21 @@ const initialState: TGlobalDialogState = {
   cart: [],
 };
 
-const loadCart = () => {
-  try {
-    const storedCart = localStorage.getItem("furniroCart");
-    return storedCart ? JSON.parse(storedCart) : [];
-  } catch {
-    return [];
-  }
-};
-
 const saveCart = (items: CartItem[]) => {
   localStorage.setItem("furniroCart", JSON.stringify(items));
 };
 
 export const globalDialogSlice = createSlice({
   name: "globalDialog",
-  initialState: { ...initialState, cart: loadCart() },
+  initialState,
   reducers: {
+    hydrateCart(state) {
+      try {
+        const stored = localStorage.getItem("furniroCart");
+
+        state.cart = stored ? JSON.parse(stored) : [];
+      } catch {}
+    },
     showDialog(state) {
       state.open = true;
     },
@@ -47,7 +46,11 @@ export const globalDialogSlice = createSlice({
         (item: CartItem) => item.id === action.payload.id
       );
       if (existing) {
-        existing.quantity += action.payload.quantity;
+        if (existing.quantity <= action.payload.maxCount) {
+          existing.quantity += action.payload.quantity;
+        } else {
+          return;
+        }
       } else {
         state.cart.push(action.payload);
       }
@@ -59,10 +62,49 @@ export const globalDialogSlice = createSlice({
       );
       saveCart(state.cart);
     },
+    increaseQuantity(
+      state,
+      action: PayloadAction<{ id: string; maxCount: number }>
+    ) {
+      const item = state.cart.find(
+        (item: CartItem) => item.id === action.payload.id
+      );
+      if (item && item.quantity <= action.payload.maxCount) {
+        item.quantity++;
+      } else {
+        return;
+      }
+      saveCart(state.cart);
+    },
+    decreaseQuantity(state, action: PayloadAction<string>) {
+      const item = state.cart.find(
+        (item: CartItem) => item.id === action.payload
+      );
+      if (item) {
+        if (item.quantity === 1) {
+          state.cart = state.cart.filter(
+            (item: CartItem) => item.id !== action.payload
+          );
+          saveCart(state.cart);
+        } else {
+          item.quantity--;
+        }
+      } else {
+        return;
+      }
+      saveCart(state.cart);
+    },
   },
 });
 
 export const selectGlobalDialogState = (state: RootState) => state.globalDialog;
-export const { showDialog, hideDialog, addItem, removeItem } =
-  globalDialogSlice.actions;
+export const {
+  showDialog,
+  hideDialog,
+  addItem,
+  removeItem,
+  increaseQuantity,
+  decreaseQuantity,
+  hydrateCart,
+} = globalDialogSlice.actions;
 export default globalDialogSlice.reducer;

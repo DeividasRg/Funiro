@@ -19,11 +19,11 @@ export const shortProductSchema = z.object({
   ]),
   isNew: z.boolean().nonoptional(),
   previewImage: z.url("Preview image must be a valid URL"),
+  maxCount: z.number().min(1),
 });
 
 export const productSchema = shortProductSchema.extend({
   rating: z.number().max(5).min(1),
-  maxCount: z.number().min(1),
   category: z.string().nonempty("Category cannot be empty"),
   tags: z
     .array(

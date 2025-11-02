@@ -67,6 +67,7 @@ const HoverComponent = ({ data }: { data: TShortProduct }) => {
             price: data.price,
             quantity: 1,
             previewImage: data.previewImage,
+            maxCount: data.maxCount,
           })
         );
         dispatch(showDialog());

@@ -1,6 +1,10 @@
+"use client";
+import { showDialog } from "@/app/slices/GlobalDialogSlice";
 import { SlUser, SlMagnifier, SlHeart, SlBasket } from "react-icons/sl";
+import { useDispatch } from "react-redux";
 
 function QuickIcons() {
+  const dispatch = useDispatch();
   return (
     <div className="flex space-x-8">
       <button className="hover:cursor-pointer">
@@ -12,7 +16,10 @@ function QuickIcons() {
       <button className="hover:cursor-pointer">
         <SlHeart size={20} />
       </button>
-      <button className="hover:cursor-pointer">
+      <button
+        onClick={() => dispatch(showDialog())}
+        className="hover:cursor-pointer"
+      >
         <SlBasket size={20} />
       </button>
     </div>

@@ -31,8 +31,8 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased text-sm bg-[#FFFFFF] min-h-screen  text-compliment overflow-x-hidden`}
       >
-        <Header />
         <ReduxProviderWrapper>
+          <Header />
           {children}
           <GlobalDialogWrapper />
         </ReduxProviderWrapper>

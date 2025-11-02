@@ -2,7 +2,9 @@
 
 import {
   CartItem,
+  decreaseQuantity,
   hideDialog,
+  increaseQuantity,
   removeItem,
   selectGlobalDialogState,
 } from "@/app/slices/GlobalDialogSlice";
@@ -15,6 +17,10 @@ import Image from "next/image";
 function GlobalDialog() {
   const dispatch = useDispatch();
   const { open, cart } = useSelector(selectGlobalDialogState);
+  const totalSum: number = cart.reduce(
+    (acc: number, cur: CartItem) => acc + cur.price * cur.quantity,
+    0
+  );
 
   return (
     <Dialog open={open} onOpenChange={() => dispatch(hideDialog())}>
@@ -54,8 +60,31 @@ function GlobalDialog() {
                         <div className="space-y-5">
                           <p className="font-bold text-base">{item.name}</p>
                           <p>
-                            <span className="text-xl">{item.quantity}</span>{" "}
-                            <span className="mx-3">X</span>
+                            <button
+                              onClick={() =>
+                                dispatch(decreaseQuantity(item.id))
+                              }
+                              className="text-xl"
+                            >
+                              -
+                            </button>
+                            <span className="text-xl mx-1">
+                              {item.quantity}
+                            </span>{" "}
+                            <button
+                              className="text-xl"
+                              onClick={() =>
+                                dispatch(
+                                  increaseQuantity({
+                                    id: item.id,
+                                    maxCount: item.maxCount,
+                                  })
+                                )
+                              }
+                            >
+                              +
+                            </button>
+                            <span className="mx-5">X</span>
                             <span className="text-base text-secondary-main font-bold">
                               ${item.price}
                             </span>
@@ -73,7 +102,9 @@ function GlobalDialog() {
                 </div>
                 <div className="flex gap-x-20 mt-20 mb-6 items-center">
                   <p className="text-xl">Subtotal</p>
-                  <p className="text-xl text-secondary-main font-bold">$500</p>
+                  <p className="text-xl text-secondary-main font-bold">
+                    ${totalSum}
+                  </p>
                 </div>
                 <div className="flex items-center gap-x-2 justify-around pt-5 border-t">
                   <button className="font-bold border border-black  px-10 py-4 rounded-4xl hover:bg-secondary-main hover:cursor-pointer hover:text-white transition">
