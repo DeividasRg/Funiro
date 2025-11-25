@@ -103,6 +103,9 @@ function CartDetails() {
             <p className="font-bold">Total</p>
             <p className="text-secondary-main">${total}</p>
           </div>
+          <button className="block mx-auto px-10 py-3 mt-5 border rounded-lg border-black hover:bg-accent hover:cursor-pointer transition">
+            Check Out
+          </button>
         </div>
       </div>
     </section>
