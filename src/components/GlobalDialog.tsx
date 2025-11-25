@@ -13,6 +13,7 @@ import { useDispatch } from "react-redux";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "./ui/dialog";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 
 function GlobalDialog() {
   const dispatch = useDispatch();
@@ -107,12 +108,20 @@ function GlobalDialog() {
                   </p>
                 </div>
                 <div className="flex items-center gap-x-2 justify-around pt-5 border-t">
-                  <button className="font-bold border border-black  px-10 py-4 rounded-4xl hover:bg-secondary-main hover:cursor-pointer hover:text-white transition">
+                  <Link
+                    href="/cart"
+                    onClick={() => dispatch(hideDialog())}
+                    className="font-bold border border-black  px-10 py-4 rounded-4xl hover:bg-secondary-main hover:cursor-pointer hover:text-white transition"
+                  >
                     Cart
-                  </button>
-                  <button className="font-bold border border-black  px-10 py-4 rounded-4xl hover:bg-secondary-main hover:cursor-pointer hover:text-white transition">
+                  </Link>
+                  <Link
+                    href="/checkout"
+                    onClick={() => dispatch(hideDialog())}
+                    className="font-bold border border-black  px-10 py-4 rounded-4xl hover:bg-secondary-main hover:cursor-pointer hover:text-white transition"
+                  >
                     Checkout
-                  </button>
+                  </Link>
                   <button className="font-bold border border-black  px-10 py-4 rounded-4xl hover:bg-secondary-main hover:cursor-pointer hover:text-white transition">
                     Comparison
                   </button>

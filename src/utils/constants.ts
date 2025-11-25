@@ -7,6 +7,64 @@ import pingkyImg from "../../public/image 7.png";
 import pottyImg from "../../public/image 8.png";
 import grifoImg from "../../public/Image 5.png";
 
+export const billingDetailsFormFields = [
+  {
+    id: 1,
+    type: "text",
+    name: "firstName",
+    label: "First Name",
+  },
+  {
+    id: 2,
+    type: "text",
+    name: "lastName",
+    label: "Last Name",
+  },
+  {
+    id: 3,
+    type: "text",
+    name: "companyName",
+    label: "Company Name (Optional)",
+  },
+  {
+    id: 4,
+    type: "select",
+    name: "country",
+    options: [
+      "United States",
+      "Canada",
+      "United Kingdom",
+      "Australia",
+      "Germany",
+    ],
+    label: "Country / Region",
+  },
+  {
+    id: 5,
+    type: "text",
+    name: "streetAddress",
+    label: "Street Address",
+  },
+  {
+    id: 6,
+    type: "text",
+    name: "zipCode",
+    label: "ZIP Code",
+  },
+  {
+    id: 7,
+    type: "text",
+    name: "phone",
+    label: "Phone",
+  },
+  {
+    id: 8,
+    type: "email",
+    name: "email",
+    label: "Email",
+  },
+];
+
 export const navLinks = [
   {
     href: "/",
