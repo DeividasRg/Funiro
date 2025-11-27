@@ -3,7 +3,7 @@ import HeaderPicture from "@/components/HeaderPicture";
 import InfoBanner from "@/components/InfoBanner";
 import { billingDetailsFormFields } from "@/utils/constants";
 
-function page() {
+function CheckoutPage() {
   async function handleSubmit(formData: FormData) {
     "use server";
   }
@@ -78,4 +78,4 @@ function page() {
   );
 }
 
-export default page;
+export default CheckoutPage;
