@@ -6,9 +6,16 @@ type BtnCompPropss = {
   type: "main" | "secondary" | "addition" | "switch";
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   additionalStyles?: string;
+  submit?: true | false;
 };
 
-function BtnComp({ children, type, onClick, additionalStyles }: BtnCompPropss) {
+function BtnComp({
+  children,
+  type,
+  onClick,
+  additionalStyles,
+  submit,
+}: BtnCompPropss) {
   const styles = () => {
     switch (type) {
       case "main":
@@ -23,6 +30,16 @@ function BtnComp({ children, type, onClick, additionalStyles }: BtnCompPropss) {
         return "text-red-500";
     }
   };
+
+  if (submit) {
+    <button
+      type="submit"
+      onClick={onClick}
+      className={cn(styles(), additionalStyles)}
+    >
+      {children}
+    </button>;
+  }
 
   return (
     <button onClick={onClick} className={cn(styles(), additionalStyles)}>

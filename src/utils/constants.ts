@@ -7,6 +7,23 @@ import pingkyImg from "../../public/image 7.png";
 import pottyImg from "../../public/image 8.png";
 import grifoImg from "../../public/Image 5.png";
 
+export const paymentMethods = [
+  {
+    id: 1,
+    label: "Direct Bank Transfer",
+    value: "directBankTransfer",
+    additionalText:
+      "Make sure payment directly into our bank account. Please use your Order ID as the payment reference. Your order will not be shipped until the funds have cleared in our account.",
+  },
+  {
+    id: 2,
+    label: "Cash On Delivery",
+    value: "cashOnDelivery",
+    additionalText:
+      "Hand the cash directly to the courier once your order has arrived.",
+  },
+];
+
 export const billingDetailsFormFields = [
   {
     id: 1,

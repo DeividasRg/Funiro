@@ -6,6 +6,7 @@ import { billingDetailsFormFields } from "@/utils/constants";
 function CheckoutPage() {
   async function handleSubmit(formData: FormData) {
     "use server";
+    console.log(formData);
   }
 
   return (
