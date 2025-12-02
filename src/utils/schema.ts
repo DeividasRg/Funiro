@@ -57,6 +57,5 @@ export const productSchema = shortProductSchema.extend({
 });
 
 export const shortProductsSchema = z.array(shortProductSchema);
-
 export type TShortProduct = z.infer<typeof shortProductSchema>;
 export type TProduct = z.infer<typeof productSchema>;

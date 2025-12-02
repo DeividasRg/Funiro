@@ -10,7 +10,7 @@ export type CartItem = {
   maxCount: number;
 };
 
-type TGlobalDialogState = {
+export type TGlobalDialogState = {
   open: boolean;
   cart: CartItem[];
 };
