@@ -4,8 +4,16 @@ import { paymentMethods } from "@/utils/constants";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import BtnComp from "./BtnComp";
+import { FieldErrors, UseFormRegister, UseFormSetValue } from "react-hook-form";
+import { TCheckoutForm } from "@/utils/schema";
 
-function CheckoutDetails() {
+type CheckoutDetailsProps = {
+  register: UseFormRegister<TCheckoutForm>;
+  errors: FieldErrors<TCheckoutForm>;
+  setValue: UseFormSetValue<TCheckoutForm>;
+};
+
+function CheckoutDetails({ register, errors, setValue }: CheckoutDetailsProps) {
   const { cart } = useSelector(selectGlobalDialogState);
   const total = Number(
     cart.reduce((acc, cur) => acc + cur.price * cur.quantity, 0).toFixed(2)
@@ -44,12 +52,18 @@ function CheckoutDetails() {
             <label className="flex gap-x-4">
               <input
                 type="radio"
-                name="paymentMethod"
+                {...register("paymentMethod", {
+                  required: "Payment Method is required",
+                })}
                 value={method.value}
                 className="peer hidden"
                 checked={selectedPaymentMethodId === method.id}
-                onChange={() => setSelectedPaymentMethodId(method.id)}
+                onChange={() => {
+                  setValue("paymentMethod", method.value);
+                  setSelectedPaymentMethodId(method.id);
+                }}
               />
+
               <div className="w-4 h-4 rounded-full border border-gray-500 peer-check:border-black peer-checked:bg-black transition" />
               <span className="text-black/50 peer-checked:text-black transition">
                 {method.label}
@@ -62,6 +76,9 @@ function CheckoutDetails() {
             )}
           </li>
         ))}
+        {errors.paymentMethod && (
+          <p>{errors.paymentMethod.message as string}</p>
+        )}
         <p className="mt-2">
           Your personal data will be used to support your experience throughout
           this website, to manage access to your account, and for other purposes

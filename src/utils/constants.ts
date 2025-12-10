@@ -6,6 +6,15 @@ import muggoImg from "../../public/image 6.png";
 import pingkyImg from "../../public/image 7.png";
 import pottyImg from "../../public/image 8.png";
 import grifoImg from "../../public/Image 5.png";
+import { TBillingDetailsField } from "./types";
+
+export const countryOptions = [
+  "United States",
+  "Canada",
+  "United Kingdom",
+  "Australia",
+  "Germany",
+] as const;
 
 export const paymentMethods = [
   {
@@ -22,20 +31,24 @@ export const paymentMethods = [
     additionalText:
       "Hand the cash directly to the courier once your order has arrived.",
   },
-];
+] as const;
 
-export const billingDetailsFormFields = [
+export const paymentValues = paymentMethods.map((m) => m.value);
+
+export const billingDetailsFormFields: TBillingDetailsField[] = [
   {
     id: 1,
     type: "text",
     name: "firstName",
     label: "First Name",
+    parameters: { required: "First name is required" },
   },
   {
     id: 2,
     type: "text",
     name: "lastName",
     label: "Last Name",
+    parameters: { required: "Last name is required" },
   },
   {
     id: 3,
@@ -47,38 +60,37 @@ export const billingDetailsFormFields = [
     id: 4,
     type: "select",
     name: "country",
-    options: [
-      "United States",
-      "Canada",
-      "United Kingdom",
-      "Australia",
-      "Germany",
-    ],
+    options: countryOptions,
     label: "Country / Region",
+    parameters: { required: "Country is required" },
   },
   {
     id: 5,
     type: "text",
     name: "streetAddress",
     label: "Street Address",
+    parameters: { required: "Street address is required" },
   },
   {
     id: 6,
     type: "text",
     name: "zipCode",
     label: "ZIP Code",
+    parameters: { required: "Zip Code is required" },
   },
   {
     id: 7,
     type: "text",
     name: "phone",
     label: "Phone",
+    parameters: { required: "Phone is required" },
   },
   {
     id: 8,
     type: "email",
     name: "email",
     label: "Email",
+    parameters: { required: "Email is required" },
   },
 ];
 

@@ -1,3 +1,5 @@
+import { RegisterOptions } from "react-hook-form";
+import { TCheckoutForm } from "./schema";
 // export type TProduct = TShortProduct & {
 //   rating: number;
 //   maxCount: number;
@@ -22,3 +24,12 @@
 //   isNew: boolean;
 //   previewImage: string | StaticImageData;
 // };
+
+export type TBillingDetailsField = {
+  id: number;
+  name: keyof TCheckoutForm;
+  type: "text" | "email" | "select";
+  label: string;
+  parameters?: RegisterOptions;
+  options?: readonly string[];
+};
