@@ -7,6 +7,12 @@ import globalDialogReducer from "@/app/slices/GlobalDialogSlice";
 import { paymentMethods } from "@/utils/constants";
 
 function renderWithCart() {
+  const props = {
+    register: jest.fn(),
+    errors: {},
+    setValue: jest.fn(),
+  };
+
   const store = configureStore({
     reducer: { globalDialog: globalDialogReducer },
     preloadedState: {
@@ -36,7 +42,11 @@ function renderWithCart() {
 
   return render(
     <Provider store={store}>
-      <Page />
+      <Page
+        register={props.register}
+        errors={props.errors}
+        setValue={props.setValue}
+      />
     </Provider>
   );
 }
